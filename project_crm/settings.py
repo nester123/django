@@ -16,6 +16,11 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import environ
+
+env = environ.Env()
+
+environ.Env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -24,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^_ovpcxovb17ql5(1639%zk*m3&kqz-)5mm+5*cj@b3kdx#^k6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -75,14 +80,22 @@ WSGI_APPLICATION = 'project_crm.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+'''
+import dj_database_url
 
+DATABASES = {
+    'default': dj_database_url.parse(env('DATABASE_URL'))
+
+}
+
+#postgresql://postgres1_1t0n_user:aLHkACPtj04OjqEZdkgqefaj1vAjPQ7H@dpg-cs0kmbggph6c73aae5q0-a.oregon-postgres.render.com/postgres1_1t0n
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
