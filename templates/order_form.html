@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+    form {
+        display: flex;
+        background-color: #333;
+        height: 3rem;
+        align-items: center;
+        gap: 6rem;
+        margin-top: 1rem;
+        padding: 0.25rem;
+        font-weight: bold;
+        border: 2px solid darkgreen;
+        border-radius: 5px;
+    }
+    button {
+        margin-left: auto;
+        margin-right: 1rem;
+        width: 6rem;
+        background-color: green;
+        color: papayawhip;
+    }
+    .left {
+        display: none;
+    }
+
+</style>
+<form action="" method="POST">
+    <h3>add record:</h3>
+    {% csrf_token %}
+    {{form}}
+    <button>submit</button>
+</form>
+{% endblock %}
+

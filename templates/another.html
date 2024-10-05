@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body bgcolor="{{customer}}">
+    <style>
+      h5 > a {
+        color: lime;
+      }
+      h1,
+      h4,
+      h3 {
+        color: red;
+      }
+    </style>
+    <h1>hello, {{customer}}</h1>
+    <br />
+    <h3>your orders are:</h3>
+    <hr />
+    {% for order in orders %}
+    <h4>{{order}}</h4>
+    {% endfor %}
+    <h5><a href="{% url 'index' %}">home</a></h5>
+    <a href="{% url 'logout' %}"><button>logout</button></a>
+  </body>
+</html>

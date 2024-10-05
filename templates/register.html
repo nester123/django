@@ -1,0 +1,45 @@
+<body
+  style="
+    overflow: hidden;
+    background-color: darkgreen;
+    height: 100vh;
+    display: grid;
+    place-content: center;
+  "
+>
+  <div
+    style="
+      box-shadow: 0 2px 5px papayawhip;
+      border-radius: 20px;
+      color: papayawhip;
+      height: auto;
+      background-color: black;
+      text-align: center;
+      list-style: none;
+      width: 500px;
+    "
+  >
+    <form
+      action=""
+      method="POST"
+      style="display: flex; flex-direction: column; padding: 7rem;"
+    >
+      {% csrf_token %} {% for f in form%} {{f.label}} {{f}}
+      <br />
+      {% endfor %}
+
+      <input
+        style="background-color: darkgreen; color: papayawhip"
+        type="submit"
+        name="Create User"
+      />
+
+      <div style="color: red; font-style:italic;">{{form.errors}}</div>
+
+      <h4>
+        already have an account?
+        <a href="{% url 'login' %}" style="color: limegreen">login</a>
+      </h4>
+    </form>
+  </div>
+</body>

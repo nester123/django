@@ -1,0 +1,25 @@
+{% extends 'index.html' %} {% block content %}
+<style>
+  form {
+    background-color: red;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+  }
+  button {
+    background-color: black;
+    color: papayawhip;
+    font-weight: bold;
+    width: 6rem;
+  }
+</style>
+
+<form action="" method="POST">
+  <h3>update record:</h3>
+  {% csrf_token %} {{form}}
+  <button>submit</button>
+</form>
+
+{% endblock %}

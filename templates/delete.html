@@ -1,0 +1,40 @@
+{% extends 'index.html' %} {% block content %}
+<style>
+  form {
+    background-color: red;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    text-align: center;
+    justify-content: center;
+  }
+  button {
+    background-color: black;
+    color: papayawhip;
+    font-weight: bold;
+    width: 6rem;
+    border: none;
+  }
+  .left{display: none;}
+
+  form > a {
+    color: lime;
+    font-weight: bolder;
+    background-color: black;
+    width: 6rem;
+    padding: 0.15rem;
+    border-radius: 2px;
+    display: grid;
+    place-content: center;
+  }
+
+</style>
+<h3 style="color: red;">are you sure you want to delete "{{item.product}}"?</h3>
+<form action="" method="POST">
+  {% csrf_token %}
+  <button href="">yes</button>
+  <a href="{% url 'index' %}">cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        background: black;
+        color: papayawhip;
+        display: flex;
+        height: 100vh;
+      }
+      .left {
+        width: 40%;
+      }
+      .right {
+        width: 100%;
+        padding: 0.5rem;
+        overflow: scroll;
+      }
+      .label {
+        display: flex;
+      }
+
+      .label1,
+      .label2,
+      .label3 {
+        margin-inline: auto;
+        background-color: #333;
+        padding: 2rem;
+      }
+
+      .label1 {
+        color: limegreen;
+      }
+
+      .label2 {
+        color: black;
+      }
+
+      .label3 {
+        color: yellow;
+      }
+
+      a {
+        color: lime;
+        text-decoration: none;
+      }
+
+      button {
+        padding: 0.25rem;
+        border-radius: 5px;
+      }
+
+      .button {
+        background-color: green;
+        color: whitesmoke;
+      }
+      .order {
+        width: 100%;
+        background-color: darkgreen;
+        color: papayawhip;
+        padding: 0;
+        position: sticky;
+        top: 0;
+      }
+    </style>
+
+    <div class="left">
+
+      <h2>Customers in database</h2>
+      {{no_c}} customers
+      <hr />
+
+      {% for customer in customers %}
+      <h5><a href="{% url 'customer' customer.id %}">{{customer}}</a></h5>
+      {% endfor %}
+      <a href="{% url 'register' %}"><button style="width: 6rem; background-color:aqua; color: black;">register</button></a>
+      <a href="{% url 'logout' %}"><button style="width: 6rem; background-color:aqua; color: black;">logout</button></a>
+      <hr />
+      <h2>products in database</h2>
+      <hr />
+
+      {% for product in products %}
+      <h5>name: {{product.name}}, price: {{product.price}}</h5>
+      {% endfor %}
+      <hr />
+      <form action="">
+        <h5 style="text-align: center; width: 80%; color: chartreuse; display: flex; align-items: center; gap: 0.5rem; margin-inline: 0.25rem;">{{myfilter.form}}</h5>
+        <button style="width: 6rem; background-color:aqua; color: black;">search</button>
+      </form>
+    </div>
+    <hr />
+    <div class="right">
+      <h2>
+        orders in database
+        <div class="label">
+          <h4 class="label1">{{no_d}} delivered</h4>
+          <h4 class="label2">{{no_p}} pending</h4>
+          <h4 class="label3">{{no_o}} out of delivery</h4>
+        </div>
+      </h2>
+      <hr />
+      <a href="{% url 'order' %}"><button class="order"><h3>create order</h3></button></a>
+      {% block content %}
+
+      {% endblock %}
+      
+      {% for order in orders %}
+      <h5 style="color: papayawhip; font-size: 1rem;">
+        {{order.customer}}, {{order.product}}, {{order.status}}, {{order.date}},
+      </h5>
+      <span
+        ><a href="{% url 'update' order.id %}"><button class="button">update</button></a></span
+      >
+      <span
+        ><a href="{% url 'delete' order.id %}"
+          ><button style="background-color: aqua; color: black">
+            delete
+          </button></a
+        ></span
+      >
+      
+      <hr />
+      {% endfor %}
+      <hr />
+      <hr />
+    </div>
+  </body>
+</html>
